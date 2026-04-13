@@ -31,3 +31,45 @@ export interface Tenant {
 }
 
 export type TenantFilter = 'all' | 'health' | 'social';
+
+export interface ExportRequest {
+  requestId: string;
+  status: 'requested' | 'processing' | 'completed' | 'failed';
+  eventCount: number | null;
+  downloadAvailable: boolean;
+  downloadExpiresAt: string | null;
+  requestedAt: string;
+  completedAt: string | null;
+}
+
+export interface DeletionRequest {
+  requestId: string;
+  status: 'requested' | 'processing' | 'completed' | 'failed';
+  eventsDeleted: number | null;
+  requestedAt: string;
+  completedAt: string | null;
+}
+
+export interface LinkedAccount {
+  id: string;
+  tenantId: string;
+  tenantUserId: string;
+  linkedAt: string;
+}
+
+export interface DashboardUser {
+  id: string;
+  googleId: string;
+  email: string;
+  name: string;
+  picture: string | null;
+  linkedAccounts: LinkedAccount[];
+}
+
+export interface RiskAlert {
+  id: string;
+  eventId: string;
+  riskScore: number;
+  explanation: string;
+  createdAt: string;
+}
