@@ -82,7 +82,13 @@ export default function EventFeed({ events }: Props) {
               No events match the selected filters.
             </Typography>
           ) : (
-            filtered.map((e) => <EventCard key={e.id} event={e} />)
+            filtered.map((e, i) => (
+              <EventCard
+                key={e.id}
+                event={e}
+                delay={`delay-${Math.min(i, 5)}`}
+              />
+            ))
           )}
         </Box>
       </CardContent>
